@@ -1,0 +1,37 @@
+
+.body {
+   grid-area: header;
+}
+.header {
+   background-color: rgb(32, 247, 86);
+   display: flex;
+   justify-content: space-between;
+}
+.header img {
+   max-width: 100px;
+   height: 100%
+ }
+ .login_block {
+   margin: 20px 30px 0px 0px;
+}
+.login_link {
+   text-decoration: none;
+   color: white;
+   text-transform: uppercase;
+   font-size: 20px;
+}
+.login {
+   font-size: 20px;
+   color: white;
+   display: inline-block;
+}
+.photo {
+   width: 30px;
+   border-radius: 50%;
+   margin: 0px 0px 0px 20px;
+}
+.logout_link {
+   margin: 0px 0px 0px 50px;
+   background-color:  rgb(32, 247, 86);
+   border: none;
+}
