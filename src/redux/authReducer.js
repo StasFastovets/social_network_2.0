@@ -1,11 +1,11 @@
 import { getAuth } from './../API/api';
 import { getUser } from './../API/api';
 import { logOut } from './../API/api';
+import { logIn } from './../API/api';
 
 const SET_USER_DATA = 'SET_USER_DATA'
 const SET_PROFILE = 'SET_PROFILE'
-// const LOG_IN = 'LOG_IN'
-// const LOG_OUT = 'LOG_OUT'
+
 
 let initialState = {
    id: null,
@@ -69,6 +69,20 @@ export const logOutAC = () => {
                if (data.resultCode === 0) {
                   dispatch(setUserDataAC(null, null, null, false))
                   dispatch(setMyProfileAC(null))   
+               }
+            })
+         )
+      }
+   )
+}
+
+export const LogInAC = (email, password, rememberMe) => {
+   return (
+      (dispatch) => {
+         return (
+            logIn(email, password, rememberMe).then(data => {
+               if (data.resultCode === 0) {
+                  dispatch(authAC())
                }
             })
          )

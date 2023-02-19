@@ -24,3 +24,9 @@ export const logOut = () => {
       instance.delete(`auth/login`).then(response => response.data)
    )
 }
+
+export const logIn = (email, password, rememberMe) => {
+   return (
+      instance.post(`auth/login`, { email, password, rememberMe }).then(response => response.data)
+   )
+}
