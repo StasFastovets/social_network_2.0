@@ -1,8 +1,9 @@
-import s from './header.module.css'
+import s from './header.module.scss'
 import logo from './../../img/logo.jfif'
 import userPhoto from './../../img/ava.jpg'
 import { useState } from 'react'
 import LoginContainer from '../login/LoginContainer'
+import Menu from '../burger/Menu'
 
 const Header = (props) => {
 
@@ -11,7 +12,7 @@ const Header = (props) => {
   return (
     <div className={s.body}>
       <div className={s.header}>
-        <img src={logo} alt="#"></img>
+        <img className={s.logo} src={logo} alt="#"></img>
         <div className={s.login_block}>
           {props.isAuth ?
             <div className={s.login_line}>
@@ -24,7 +25,8 @@ const Header = (props) => {
             <span className={s.login_link} onClick={() => setActive(true)}>login</span>}
         </div>
       </div>
-      <LoginContainer active={active} setActive={setActive}/>
+      <LoginContainer active={active} setActive={setActive} />
+      <Menu/>
     </div>
   )
 }

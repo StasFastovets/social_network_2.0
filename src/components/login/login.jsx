@@ -1,7 +1,6 @@
-import s from './login.module.css'
+import s from './login.module.scss'
 import { Formik, Form, Field } from 'formik'
 import * as Yup from 'yup'
-import { Navigate } from 'react-router-dom'
 
 
 const loginSchema = Yup.object().shape({
@@ -18,12 +17,13 @@ const loginSchema = Yup.object().shape({
 
 const Login = ({ active, setActive, ...props }) => {
 
-   const handleSubmit = (values) => {
-      props.LogInAC(values.email, values.password, values.remember)
+   if (props.isAuth) {
+      setActive(false)
    }
 
-   if (props.isAuth) {
-      return <Navigate to={'/profile'} />
+   const handleSubmit = (values) => {
+      props.LogInAC(values.email, values.password, values.remember)
+      console.log(values)
    }
 
    return (
@@ -34,15 +34,15 @@ const Login = ({ active, setActive, ...props }) => {
                   ({ values, errors, touched, handleChange }) => (
                      <Form className={s.form}>
                         <div className={s.form_login}>
-                           <Field name='password' type='text' onChange={handleChange} values={values.login} placeholder='password' />
+                           <input name='password' type='text' onChange={handleChange} values={values.login} placeholder='password' />
                            <p>{errors.password && touched.password && errors.password}</p>
                         </div>
                         <div className={s.form_login}>
-                           <Field name='email' type='email' onChange={handleChange} values={values.email} placeholder='Email' />
+                           <input name='email' type='email' onChange={handleChange} values={values.email} placeholder='Email' />
                            <p>{errors.email && touched.email && errors.email}</p>
                         </div>
                         <div className={s.form_remember}>
-                           <Field name='remember' type='checkbox' onChange={handleChange} values={values.remember} />
+                           <input name='remember' type='checkbox' onChange={handleChange} values={values.remember} />
                            <p>remember me</p>
                         </div>
                         <div className={s.form_submit}>

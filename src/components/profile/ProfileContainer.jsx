@@ -1,8 +1,8 @@
 
 
-const ProfileContainer = (props) => {
+const ProfileContainer = () => {
    return (
-      <div>fsgsdgdgdsgsdgsd</div>
+      <div>dfdfdfdf</div>
    )
 }
 

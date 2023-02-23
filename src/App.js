@@ -12,7 +12,9 @@ const App = () => {
   return (
     <div className='app-wrapper'>
       <HeaderContainer />
-      <Navigation />
+      <div className='navigation-app'>
+        <Navigation />
+      </div>
       <Routes>
         <Route path='/profile/:userId' element={<ProfileContainer />} />
         <Route path='/profile/*' element={<ProfileContainer />} />

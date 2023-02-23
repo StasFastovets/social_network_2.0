@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import Header from "./Header";
 import { authAC, logOutAC } from './../../redux/authReducer';
-import { getUserProfileAC } from "../../redux/profileReducer";
 
 
 const HeaderAPIContainer = (props) => {
