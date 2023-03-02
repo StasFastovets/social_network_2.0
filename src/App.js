@@ -6,8 +6,27 @@ import Navigation from './components/navbar/navbar';
 import ProfileContainer from './components/profile/ProfileContainer';
 import DialogsContainer from './components/dialogs/DialogsContainer';
 import UsersContainer from './components/users/UsersContainer';
+import LoginInfo from './components/login/login_info';
+import { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { InitializedAppTC } from './redux/appReducer';
+import Preloader from './components/other/preloader/preloader';
+import HomePage from './components/home/HomePage';
+import NotFoundPage from './components/not_found_page/NotFoundPage';
 
-const App = () => {
+const App = (props) => {
+
+  useEffect(() => {
+    props.InitializedAppTC()
+  }, [])
+
+  if (!props.initialized) {
+    return (
+      <div className='preload'>
+        <Preloader />
+      </div>
+    )
+  }
 
   return (
     <div className='app-wrapper'>
@@ -16,16 +35,27 @@ const App = () => {
         <Navigation />
       </div>
       <Routes>
-        <Route path='/profile/:userId' element={<ProfileContainer />} />
-        <Route path='/profile/*' element={<ProfileContainer />} />
+        <Route path='/' element={<HomePage />} />
+        <Route path='/profile/:userID' element={<ProfileContainer />} />
+        <Route path='/profile/' element={<ProfileContainer />} />
         <Route path='/dialogs/*' element={<DialogsContainer />} />
         <Route path='/users/' element={<UsersContainer />} />
+        <Route path='/login' element={<LoginInfo />} />
         {/* <Route path='/news' element={<News />} />
         <Route path='/music' element={<Music />} />
         <Route path='/settings' element={<Settings />} /> */}
+        <Route path='*' element={<NotFoundPage />} />
       </Routes>
     </div >
   );
 }
 
-export default App;
+let mapStateToProps = (state) => {
+  return {
+    initialized: state.app.initialized
+  }
+}
+
+const AppContainer = connect(mapStateToProps, { InitializedAppTC })(App)
+
+export default AppContainer;

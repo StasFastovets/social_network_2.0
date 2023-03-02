@@ -6,7 +6,6 @@ import LoginContainer from '../login/LoginContainer'
 import Menu from '../burger/Menu'
 
 const Header = (props) => {
-
   const [active, setActive] = useState(false)
 
   return (
@@ -20,13 +19,13 @@ const Header = (props) => {
               <div className={s.user_photo}>
                 <img className={s.photo} src={props.photoSmall != null ? props.photoSmall : userPhoto} alt=""></img>
               </div>
-              <button className={`${s.login_link} ${s.logout_link}`} onClick={props.logOut}>LogOut</button>
+              <button className={`${s.login_link} ${s.logout_link}`} onClick={props.logOutTC}>LogOut</button>
             </div> :
             <span className={s.login_link} onClick={() => setActive(true)}>login</span>}
         </div>
       </div>
       <LoginContainer active={active} setActive={setActive} />
-      <Menu/>
+      <Menu />
     </div>
   )
 }

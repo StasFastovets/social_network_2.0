@@ -1,7 +1,10 @@
 import s from './login.module.scss'
 import { Formik, Form, Field } from 'formik'
 import * as Yup from 'yup'
-
+import { Navigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useLocation } from 'react-router-dom';
 
 const loginSchema = Yup.object().shape({
    password: Yup.string()
@@ -15,16 +18,27 @@ const loginSchema = Yup.object().shape({
 })
 
 
-const Login = ({ active, setActive, ...props }) => {
+const Login = ({ active, setActive, isAuth, LogInTC }) => {
 
-   if (props.isAuth) {
+   if (isAuth) {
       setActive(false)
    }
 
+   const navigate = useNavigate()
+   const location = useLocation()
+   console.log(location)
+   const fromPage = location.state?.from?.pathname || '/'
+
+   useEffect(() => {
+      if (isAuth) {
+         navigate(fromPage);
+      }
+   }, [isAuth]);
+
    const handleSubmit = (values) => {
-      props.LogInAC(values.email, values.password, values.remember)
-      console.log(values)
-   }
+      LogInTC(values.email, values.password, values.remember);
+   };
+
 
    return (
       <div className={active ? `${s.login} ${s.login_active}` : s.login} onClick={() => setActive(false)}>
@@ -57,5 +71,3 @@ const Login = ({ active, setActive, ...props }) => {
    )
 }
 export default Login
-
-

@@ -1,7 +1,7 @@
 import { getAuth } from './../API/api';
-import { getUser } from './../API/api';
 import { logOut } from './../API/api';
 import { logIn } from './../API/api';
+import { getUserProfileTC, setUserProfileAC } from './profileReducer'
 
 const SET_USER_DATA = 'SET_USER_DATA'
 const SET_PROFILE = 'SET_PROFILE'
@@ -12,11 +12,6 @@ let initialState = {
    email: null,
    login: null,
    isAuth: false,
-   myProfile: {
-      photos: {
-         small: null
-      }
-   }
 }
 
 const authReducer = (state = initialState, action) => {
@@ -29,7 +24,7 @@ const authReducer = (state = initialState, action) => {
       case SET_PROFILE:
          return {
             ...state,
-            myProfile: action.profile
+            profile: action.profile
          }
       default:
          return state
@@ -38,9 +33,8 @@ const authReducer = (state = initialState, action) => {
 
 
 const setUserDataAC = (id, email, login, isAuth) => ({ type: SET_USER_DATA, payload: { id, email, login, isAuth } })
-const setMyProfileAC = (profile) => ({ type: SET_PROFILE, profile })
 
-export const authAC = () => {
+export const authTC = () => {
    return (
       (dispatch) => {
          return (
@@ -50,10 +44,7 @@ export const authAC = () => {
                   let id = data.data.id
                   let login = data.data.login
                   dispatch(setUserDataAC(id, email, login, true))
-
-                  getUser(id).then(data => {
-                     dispatch(setMyProfileAC(data))
-                  })
+                  dispatch(getUserProfileTC(id))
                }
             })
          )
@@ -61,14 +52,14 @@ export const authAC = () => {
    )
 }
 
-export const logOutAC = () => {
+export const logOutTC = () => {
    return (
       (dispatch) => {
          return (
             logOut().then(data => {
                if (data.resultCode === 0) {
                   dispatch(setUserDataAC(null, null, null, false))
-                  dispatch(setMyProfileAC(null))   
+                  dispatch(setUserProfileAC(null))
                }
             })
          )
@@ -76,13 +67,13 @@ export const logOutAC = () => {
    )
 }
 
-export const LogInAC = (email, password, rememberMe) => {
+export const LogInTC = (email, password, rememberMe) => {
    return (
       (dispatch) => {
          return (
             logIn(email, password, rememberMe).then(data => {
                if (data.resultCode === 0) {
-                  dispatch(authAC())
+                  dispatch(authTC())
                }
             })
          )

@@ -12,6 +12,7 @@ const Navigation = () => {
             <li><NavLink className={style} to="/music">Music</NavLink></li>
             <li><NavLink className={style} to="/users">Users</NavLink></li>
             <li><NavLink className={style} to="/settings">Settings</NavLink></li>
+            <li><NavLink className={style} to="/">Home</NavLink></li>
          </ul>
       </nav >
    )

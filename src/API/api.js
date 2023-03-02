@@ -30,3 +30,27 @@ export const logIn = (email, password, rememberMe) => {
       instance.post(`auth/login`, { email, password, rememberMe }).then(response => response.data)
    )
 }
+
+export const getStatusOfUser = (userID) => {
+   return (
+      instance.get(`profile/status/${userID}`).then(response => response.data)
+   )
+}
+
+export const updateStatusOfUser = (status) => {
+   return (
+      instance.put(`profile/status`, {status}).then(response => response.data)
+   )
+}
+
+export const updateProfilePhoto = (photo) => {
+   return (
+      instance.put(`profile/photo`, { photo }).then(response => response.data)
+   )
+}
+
+export const updateProfileData = (data) => {
+   return (
+      instance.put(`profile`, { ...data }).then(response => response.data)
+   )
+}

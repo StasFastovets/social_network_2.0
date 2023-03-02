@@ -1,13 +1,14 @@
 import { connect } from "react-redux"
 import Login from "./login"
-import { LogInAC } from "../../redux/authReducer"
+import { LogInTC } from "../../redux/authReducer"
 import React from "react";
 
-const LoginAPIContainer = (props) => {
-   return (
-      <Login {...props} />
-   )
-}
+
+// const LoginAPIContainer = (props) => {
+//    return (
+//       <Login {...props} />
+//    )
+// }
 
 let mapStateToProps = (state) => {
    return {
@@ -16,6 +17,6 @@ let mapStateToProps = (state) => {
 }
 
 
-const LoginContainer = connect(mapStateToProps, {LogInAC})(LoginAPIContainer)
+const LoginContainer = connect(mapStateToProps, { LogInTC })(Login)
 
 export default LoginContainer
