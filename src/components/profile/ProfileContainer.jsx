@@ -4,27 +4,25 @@ import { getUserProfileTC } from './../../redux/profileReducer';
 import { useEffect } from 'react';
 import Profile from './Profile';
 import { useParams } from 'react-router-dom';
+import { compose } from 'redux';
 
 const ProfileAPIContainer = (props) => {
    let { userID } = useParams()
 
-   if (!userID) {
-      userID = props.authorizedUserID
-      // if (!userId) {
-      //    this.props.history.push('/login')
-      // }
-   }
+   // if (!userID) {
+   //    userID = props.authorizedUserID
+   // }
 
    useEffect(() => {
       props.getUserProfileTC(userID)
-   }, [])
+   }, [userID])
 
    return (
       <Profile {...props} />
    )
 }
 
-const authRedirectComponent = withAuthRedirect(ProfileAPIContainer)
+// const authRedirectComponent = withAuthRedirect(ProfileAPIContainer)
 
 let mapStateToProps = (state) => {
    return {
@@ -35,7 +33,9 @@ let mapStateToProps = (state) => {
    }
 }
 
-const ProfileContainer = connect(mapStateToProps, { getUserProfileTC })(authRedirectComponent)
+// const ProfileContainer = connect(mapStateToProps, { getUserProfileTC })(authRedirectComponent)
 
 
-export default ProfileContainer
+// export default ProfileContainer
+
+export default compose(connect(mapStateToProps, { getUserProfileTC }), withAuthRedirect)(ProfileAPIContainer)

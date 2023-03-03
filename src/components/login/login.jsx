@@ -26,7 +26,6 @@ const Login = ({ active, setActive, isAuth, LogInTC }) => {
 
    const navigate = useNavigate()
    const location = useLocation()
-   console.log(location)
    const fromPage = location.state?.from?.pathname || '/'
 
    useEffect(() => {

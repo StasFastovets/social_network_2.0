@@ -54,3 +54,24 @@ export const updateProfileData = (data) => {
       instance.put(`profile`, { ...data }).then(response => response.data)
    )
 }
+
+export const getUsers = (currentPage, pageSize) => {
+   return (
+      instance.get(`users?page=${currentPage}&count=${pageSize}`)
+         .then(response => {
+            return response.data
+         })
+   )
+}
+
+export const followUser = (UserID) => {
+   return (
+      instance.post(`follow/${UserID}`).then(response => response.data)
+   )
+}
+
+export const unfollowUser = (UserID) => {
+   return (
+      instance.delete(`follow/${UserID}`).then(response => response.data)
+   )
+}
