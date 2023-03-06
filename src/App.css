@@ -1,25 +1,18 @@
 
 .app-wrapper {
   max-width: 1200px;
-  margin: 10px auto;
+  margin: 0px auto;
   display: grid;
   grid-template-rows: 80px 1fr;
   grid-template-columns: 1fr 5fr;
-  height: 800px;
+  height: 700px;
   grid-template-areas: 
     'header header'
     'nav-bar content';
+  position: relative;
 }
 @media (max-width: 767px) {
   .navigation-app {
     display: none;
   }
-}
-
-.preload {
-  width: 100%;
-  height: 100%;
-  position: absolute; 
-  left: 50%;
-  top: 40%;
 }

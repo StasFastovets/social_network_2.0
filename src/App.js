@@ -7,7 +7,7 @@ import ProfileContainer from './components/profile/ProfileContainer';
 import DialogsContainer from './components/dialogs/DialogsContainer';
 import UsersContainer from './components/users/UsersContainer';
 import LoginInfo from './components/login/login_info';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { InitializedAppTC } from './redux/appReducer';
 import Preloader from './components/other/preloader/preloader';
@@ -21,11 +21,7 @@ const App = (props) => {
   }, [])
 
   if (!props.initialized) {
-    return (
-      <div className='preload'>
-        <Preloader />
-      </div>
-    )
+    return <Preloader/>
   }
 
   return (

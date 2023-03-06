@@ -4,9 +4,14 @@ import userPhoto from './../../img/ava.jpg'
 import { useState } from 'react'
 import LoginContainer from '../login/LoginContainer'
 import Menu from '../burger/Menu'
+import Preloader from '../other/preloader/preloader'
 
 const Header = (props) => {
   const [active, setActive] = useState(false)
+
+  if (props.isLoading) {
+    return <Preloader />
+  }
 
   return (
     <div className={s.body}>

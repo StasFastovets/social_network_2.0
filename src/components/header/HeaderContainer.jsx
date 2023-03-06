@@ -17,7 +17,8 @@ let mapStateToProps = (state) => {
       email: state.auth.email,
       login: state.auth.login,
       isAuth: state.auth.isAuth,
-      photoSmall: state.profile.profile.photos.small
+      photoSmall: state.profile.profile.photos.small,
+      isLoading: state.auth.isLoading,
    }
 }
 

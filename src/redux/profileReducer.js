@@ -3,6 +3,7 @@ import { getStatusOfUser } from './../API/api';
 
 const SET_USER = 'GET_USER'
 const SET_STATUS = 'SET_STATUS'
+const IS_LOADING = 'IS_LOADING'
 
 let initialState = {
    profile: {
@@ -11,6 +12,7 @@ let initialState = {
       }
    },
    status: '',
+   isLoading: false,
 }
 
 const profileReducer = (state = initialState, action) => {
@@ -25,6 +27,11 @@ const profileReducer = (state = initialState, action) => {
             ...state,
             status: action.status
          }
+      case IS_LOADING:
+         return {
+            ...state,
+            isLoading: action.isLoading
+         }
       default:
          return state
    }
@@ -33,6 +40,7 @@ const profileReducer = (state = initialState, action) => {
 
 export const setUserProfileAC = (profile) => ({ type: SET_USER, profile })
 export const setStatusOfUserAC = (status) => ({ type: SET_STATUS, status })
+export const setIsLoadingAC = (isLoading) => ({ type: IS_LOADING, isLoading })
 
 export const getUserProfileTC = (userID) => {
    return (
@@ -61,10 +69,12 @@ export const getStatusOfUserTC = (id) => {
 export const updataStatusOfUserTC = (status) => {
    return (
       (dispatch) => {
+         dispatch(setIsLoadingAC(true))
          return (
             updateStatusOfUser(status).then(data => {
                if (data.resultCode == 0) {
                   dispatch(setStatusOfUserAC(status))
+                  dispatch(setIsLoadingAC(false))
                }
             })
          )
@@ -72,18 +82,5 @@ export const updataStatusOfUserTC = (status) => {
    )
 }
 
-export const updataPhotoOfUserTC = (photo) => {
-   return (
-      (dispatch) => {
-         return (
-            updateStatusOfUser(photo).then(data => {
-               if (data.resultCode == 0) {
-                  dispatch(setStatusOfUserAC(photo))
-               }
-            })
-         )
-      }
-   )
-}
 
 export default profileReducer

@@ -1,10 +1,14 @@
 import loadBar from './../../../img/loading.svg'
 import React from 'react';
-import s from './preloader.scss'
-
+import s from './preloader.module.scss'
 
 
 const Preloader = () => {
-   return  <img className={s.preload} src={loadBar} />
+   return (
+      <div className={s.container}>
+         <img src={loadBar} />
+      </div>
+   )
 }
+
 export default Preloader;

@@ -3,8 +3,9 @@ import { logOut } from './../API/api';
 import { logIn } from './../API/api';
 import { getUserProfileTC, setUserProfileAC } from './profileReducer'
 
-const SET_USER_DATA = 'SET_USER_DATA'
-const SET_PROFILE = 'SET_PROFILE'
+const SET_USER_DATA = 'auth/SET_USER_DATA'
+const SET_PROFILE = 'auth/SET_PROFILE'
+const IS_LOADING = 'auth/IS_LOADING'
 
 
 let initialState = {
@@ -12,6 +13,7 @@ let initialState = {
    email: null,
    login: null,
    isAuth: false,
+   isLoading: false,
 }
 
 const authReducer = (state = initialState, action) => {
@@ -26,6 +28,11 @@ const authReducer = (state = initialState, action) => {
             ...state,
             profile: action.profile
          }
+      case IS_LOADING:
+         return {
+            ...state,
+            isLoading: action.isLoading
+         }
       default:
          return state
    }
@@ -33,6 +40,7 @@ const authReducer = (state = initialState, action) => {
 
 
 const setUserDataAC = (id, email, login, isAuth) => ({ type: SET_USER_DATA, payload: { id, email, login, isAuth } })
+const setIsLoadingAC = (isLoading) => ({ type: IS_LOADING, isLoading })
 
 export const authTC = () => {
    return (
@@ -55,11 +63,13 @@ export const authTC = () => {
 export const logOutTC = () => {
    return (
       (dispatch) => {
+         dispatch(setIsLoadingAC(true))
          return (
             logOut().then(data => {
                if (data.resultCode === 0) {
                   dispatch(setUserDataAC(null, null, null, false))
-                  dispatch(setUserProfileAC(null))
+                  // dispatch(setUserProfileAC(null))
+                  dispatch(setIsLoadingAC(false))
                }
             })
          )
