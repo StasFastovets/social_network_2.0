@@ -1,13 +1,13 @@
 import s from './Profile.module.scss'
-// import Preloader from './../../common/preloader/preloader';
+import Preloader from './../other/preloader/preloader'
 // import ProfileStatusWithHooks from './ProfileStatusWithHooks';
 import ava from './../../img/ava.jpg'
 import ProfileStatus from './profileStatus/ProfileStatus'
 
 const Profile = ({ profile, ...props }) => {
-   // if (profile == null || profile == undefined) {
-   //    return <Preloader />
-   // }
+   if (profile == null || profile == undefined) {
+      return <Preloader />
+   }
    return (
       <div className={s.content}>
          <div className={s.status}>

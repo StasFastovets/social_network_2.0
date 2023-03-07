@@ -1,7 +1,7 @@
 import { getUser, updateStatusOfUser } from "../API/api"
 import { getStatusOfUser } from './../API/api';
 
-const SET_USER = 'GET_USER'
+const SET_USER = 'SET_USER'
 const SET_STATUS = 'SET_STATUS'
 const IS_LOADING = 'IS_LOADING'
 

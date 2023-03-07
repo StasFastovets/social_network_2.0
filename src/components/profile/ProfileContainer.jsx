@@ -14,7 +14,7 @@ const ProfileAPIContainer = (props) => {
    if (!userID) {
       userID = props.authorizedUserID
    }
-   console.log(userID)
+
    useEffect(() => {
       props.getUserProfileTC(userID)
       props.getStatusOfUserTC(userID)
@@ -33,7 +33,7 @@ let mapStateToProps = (state) => {
       authorizedUserID: state.auth.id,
       profile: state.profile.profile,
       status: state.profile.status,
-      isLoading: state.profile.isLoading
+      isLoading: state.profile.isLoading,
    }
 }
 

@@ -1,11 +1,12 @@
 import { getAuth } from './../API/api';
 import { logOut } from './../API/api';
-import { logIn } from './../API/api';
+import { logIn, getUser } from './../API/api';
 import { getUserProfileTC, setUserProfileAC } from './profileReducer'
 
 const SET_USER_DATA = 'auth/SET_USER_DATA'
 const SET_PROFILE = 'auth/SET_PROFILE'
 const IS_LOADING = 'auth/IS_LOADING'
+const SET_USER = 'auth/SET_USER'
 
 
 let initialState = {
@@ -14,6 +15,7 @@ let initialState = {
    login: null,
    isAuth: false,
    isLoading: false,
+   profile: null
 }
 
 const authReducer = (state = initialState, action) => {
@@ -33,6 +35,11 @@ const authReducer = (state = initialState, action) => {
             ...state,
             isLoading: action.isLoading
          }
+      case SET_USER:
+         return {
+            ...state,
+            profile: action.profile
+         }
       default:
          return state
    }
@@ -41,6 +48,28 @@ const authReducer = (state = initialState, action) => {
 
 const setUserDataAC = (id, email, login, isAuth) => ({ type: SET_USER_DATA, payload: { id, email, login, isAuth } })
 const setIsLoadingAC = (isLoading) => ({ type: IS_LOADING, isLoading })
+const setUserAC = (profile) => ({ type: SET_USER, profile })
+
+// export const authTC = () => {
+//    return (
+//       (dispatch) => {
+//          return (
+//             getAuth().then(data => {
+//                if (data.resultCode === 0) {
+//                   let email = data.data.email
+//                   let id = data.data.id
+//                   let login = data.data.login
+//                   dispatch(setUserDataAC(id, email, login, true))
+//                   // dispatch(getUserProfileTC(id))
+//                }
+//             })
+//             getUser(id).then(data => {
+//                dispatch(setUserProfileAC(data))
+//             })
+//          )
+// }
+//    )
+// }
 
 export const authTC = () => {
    return (
@@ -52,7 +81,9 @@ export const authTC = () => {
                   let id = data.data.id
                   let login = data.data.login
                   dispatch(setUserDataAC(id, email, login, true))
-                  dispatch(getUserProfileTC(id))
+                  return getUser(id).then(data => {
+                     dispatch(setUserAC(data))
+                  })
                }
             })
          )
