@@ -15,7 +15,11 @@ let initialState = {
    login: null,
    isAuth: false,
    isLoading: false,
-   profile: null
+   profile: {
+      photos: {
+         small: null
+      }
+   },
 }
 
 const authReducer = (state = initialState, action) => {

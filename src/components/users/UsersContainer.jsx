@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { follow, unfollowUserTC, setCurrentPage, getUsersTC, followUserTC, unfollow } from '../../redux/usersReducer';
 import Users from './Users';
-import { getPageSize, getTotalUsersCount, getCurrentPage, getIsFetching, getfollowingInProgress, getUsersSuperSelector, getPortionSize } from './../../redux/users_selectors';
+import { getPageSize, getTotalUsersCount, getCurrentPage, getIsFetching, getfollowingInProgress, getUsers, getPortionSize } from './../../redux/users_selectors';
 import { useEffect } from 'react';
 
 
@@ -24,7 +24,7 @@ const UsersAPIContainer = ({ getUsersTC, setCurrentPage, ...props }) => {
 
 let mapStateToProps = (state) => {
    return {
-      users: getUsersSuperSelector(state),
+      users: getUsers(state),
       pageSize: getPageSize(state),
       totalUsersCount: getTotalUsersCount(state),
       currentPage: getCurrentPage(state),

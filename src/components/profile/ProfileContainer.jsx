@@ -7,8 +7,10 @@ import { useParams } from 'react-router-dom';
 import { compose } from 'redux';
 import { updataStatusOfUserTC } from './../../redux/profileReducer';
 import { getStatusOfUserTC } from './../../redux/profileReducer';
+import { getAuthorizedUserID, getIsAuth, getIsLoading, getProfile, getStatus } from './../../redux/profile_selectors copy';
 
 const ProfileAPIContainer = (props) => {
+
    let { userID } = useParams()
 
    if (!userID) {
@@ -25,22 +27,16 @@ const ProfileAPIContainer = (props) => {
    )
 }
 
-// const authRedirectComponent = withAuthRedirect(ProfileAPIContainer)
-
 let mapStateToProps = (state) => {
    return {
-      isAuth: state.auth.isAuth,
-      authorizedUserID: state.auth.id,
-      profile: state.profile.profile,
-      status: state.profile.status,
-      isLoading: state.profile.isLoading,
+      isAuth: getIsAuth(state),
+      authorizedUserID: getAuthorizedUserID(state),
+      profile: getProfile(state),
+      status: getStatus(state),
+      isLoading: getIsLoading(state),
    }
 }
 
-// const ProfileContainer = connect(mapStateToProps, { getUserProfileTC })(authRedirectComponent)
-
-
-// export default ProfileContainer
 
 export default compose(connect(mapStateToProps,
    { getUserProfileTC, updataStatusOfUserTC, getStatusOfUserTC }), withAuthRedirect)(ProfileAPIContainer)

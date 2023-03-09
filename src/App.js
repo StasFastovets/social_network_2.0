@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useHistory } from 'react-router-dom';
 import HeaderContainer from './components/header/HeaderContainer';
 import Navigation from './components/navbar/navbar';
 import ProfileContainer from './components/profile/ProfileContainer';
@@ -14,6 +14,7 @@ import Preloader from './components/other/preloader/preloader';
 import HomePage from './components/home/HomePage';
 import NotFoundPage from './components/not_found_page/NotFoundPage';
 
+
 const App = (props) => {
 
   useEffect(() => {
@@ -21,7 +22,7 @@ const App = (props) => {
   }, [])
 
   if (!props.initialized) {
-    return <Preloader/>
+    return <Preloader />
   }
 
   return (
@@ -45,6 +46,7 @@ const App = (props) => {
     </div >
   );
 }
+
 
 let mapStateToProps = (state) => {
   return {
