@@ -7,7 +7,7 @@ import { useParams } from 'react-router-dom';
 import { compose } from 'redux';
 import { updataStatusOfUserTC } from './../../redux/profileReducer';
 import { getStatusOfUserTC } from './../../redux/profileReducer';
-import { getAuthorizedUserID, getIsAuth, getIsLoading, getProfile, getStatus } from './../../redux/profile_selectors copy';
+import { getAuthorizedUserID, getIsAuth, getIsLoading, getProfile, getStatus } from '../../redux/profile_selectors ';
 
 const ProfileAPIContainer = (props) => {
 

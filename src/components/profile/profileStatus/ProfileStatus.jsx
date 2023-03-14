@@ -5,7 +5,6 @@ import { useParams } from 'react-router-dom';
 
 const ProfileStatus = (props) => {
    let { userID } = useParams()
-   console.log(userID)
 
    let [editMode, setEditMode] = useState(false)
    let [status, setStatus] = useState(props.status)

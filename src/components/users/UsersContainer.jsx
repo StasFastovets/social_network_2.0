@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { follow, unfollowUserTC, setCurrentPage, getUsersTC, followUserTC, unfollow } from '../../redux/usersReducer';
+import { setCurrentPage, getUsersTC } from '../../redux/usersReducer';
 import Users from './Users';
 import { getPageSize, getTotalUsersCount, getCurrentPage, getIsFetching, getfollowingInProgress, getUsers, getPortionSize } from './../../redux/users_selectors';
 import { useEffect } from 'react';
+import { followUnfollowUserTC } from './../../redux/usersReducer';
 
 
 
@@ -34,10 +35,7 @@ let mapStateToProps = (state) => {
    }
 }
 
-
-const UsersContainer = connect(mapStateToProps, {
-   follow, unfollow, setCurrentPage, unfollowUserTC, getUsersTC, followUserTC
-})(UsersAPIContainer)
+const UsersContainer = connect(mapStateToProps, {followUnfollowUserTC, setCurrentPage, getUsersTC})(UsersAPIContainer)
 
 export default UsersContainer
 

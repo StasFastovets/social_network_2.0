@@ -2,7 +2,7 @@
 
 const DialogsContainer = (props) => {
    return (
-      <div>fsgsdgsd</div>
+      <div>Dialogs</div>
    )
 }
 

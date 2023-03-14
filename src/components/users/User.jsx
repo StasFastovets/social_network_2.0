@@ -4,7 +4,7 @@ import usersPhoto from "../../img/images.jfif";
 import { NavLink } from 'react-router-dom';
 
 
-const User = ({ user, unfollowUserTC, followUserTC, followingInProgress, ...props }) => {
+const User = ({ user, followUnfollowUserTC, followingInProgress }) => {
    return (
       <div className={s.user} key={user.id}>
          <div className={s.info}>
@@ -13,10 +13,10 @@ const User = ({ user, unfollowUserTC, followUserTC, followingInProgress, ...prop
             </NavLink>
             {user.followed ?
                <button disabled={followingInProgress.some(id => id === user.id)} className={s.button}
-                  onClick={() => { unfollowUserTC(user.id) }}
+                  onClick={() => { followUnfollowUserTC(user.id, false) }}
                >FOLLOW</button> :
                <button disabled={followingInProgress.some(id => id === user.id)} className={s.button}
-                  onClick={() => { followUserTC(user.id) }}
+                  onClick={() => { followUnfollowUserTC(user.id, true) }}
                >UNFOLLOW</button>}
          </div>
          <div className={s.text}>

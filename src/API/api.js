@@ -7,16 +7,24 @@ const instance = axios.create({
 })
 
 
-export const getAuth = () => {
-   return (
-      instance.get(`auth/me`).then(response => response.data)
-   )
+// export const getAuth = () => {
+//    return (
+//       instance.get(`auth/me`).then(response => response.data)
+//    )
+// }
+export const getAuth = async () => {
+   const response = await instance.get(`auth/me`);
+   return response.data;
 }
 
-export const getUser = (userID) => {
-   return (
-      instance.get(`profile/${userID}`).then(response => response.data)
-   )
+// export const getUser = (userID) => {
+//    return (
+//       instance.get(`profile/${userID}`).then(response => response.data)
+//    )
+// }
+export const getUser = async (userID) => {
+   const response = await instance.get(`profile/${userID}`);
+   return response.data;
 }
 
 export const logOut = () => {
@@ -39,7 +47,7 @@ export const getStatusOfUser = (userID) => {
 
 export const updateStatusOfUser = (status) => {
    return (
-      instance.put(`profile/status`, {status}).then(response => response.data)
+      instance.put(`profile/status`, { status }).then(response => response.data)
    )
 }
 

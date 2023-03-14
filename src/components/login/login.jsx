@@ -26,7 +26,7 @@ const Login = ({ active, setActive, isAuth, LogInTC }) => {
 
    const navigate = useNavigate()
    const location = useLocation()
-   const fromPage = location.state?.from?.pathname 
+   const fromPage = location.state?.from?.pathname
 
 
    useEffect(() => {
@@ -56,7 +56,7 @@ const Login = ({ active, setActive, isAuth, LogInTC }) => {
                            <p>{errors.email && touched.email && errors.email}</p>
                         </div>
                         <div className={s.form_remember}>
-                           <input name='remember' type='checkbox' onChange={handleChange} values={values.remember} />
+                           <input name='remember' type='checkbox' onChange={handleChange} values={values.remember ? 'true' : 'false'} />
                            <p>remember me</p>
                         </div>
                         <div className={s.form_submit}>
