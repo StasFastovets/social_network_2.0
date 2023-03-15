@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/859.38d6f782.chunk.js","mappings":"iJAQA,UANyB,SAACA,GACvB,OACG,yBAAK,WAEX,C","sources":["components/dialogs/DialogsContainer.jsx"],"sourcesContent":["\r\n\r\nconst DialogsContainer = (props) => {\r\n   return (\r\n      <div>Dialogs</div>\r\n   )\r\n}\r\n\r\nexport default DialogsContainer"],"names":["props"],"sourceRoot":""}

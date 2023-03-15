@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunksocial_network_2_0=self.webpackChunksocial_network_2_0||[]).push([[859],{2859:function(e,n,s){s.r(n);var c=s(184);n.default=function(e){return(0,c.jsx)("div",{children:"Dialogs"})}}}]);
+//# sourceMappingURL=859.38d6f782.chunk.js.map

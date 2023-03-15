@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/545.1272376a.chunk.js","mappings":"iJAQA,UANsB,SAACA,GACpB,OACG,yBAAK,QAEX,C","sources":["components/news/NewsContainer.jsx"],"sourcesContent":["\r\n\r\nconst NewsContainer = (props) => {\r\n   return (\r\n      <div>News</div>\r\n   )\r\n}\r\n\r\nexport default NewsContainer"],"names":["props"],"sourceRoot":""}
