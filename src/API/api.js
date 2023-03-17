@@ -7,21 +7,11 @@ const instance = axios.create({
 })
 
 
-// export const getAuth = () => {
-//    return (
-//       instance.get(`auth/me`).then(response => response.data)
-//    )
-// }
 export const getAuth = async () => {
    const response = await instance.get(`auth/me`);
    return response.data;
 }
 
-// export const getUser = (userID) => {
-//    return (
-//       instance.get(`profile/${userID}`).then(response => response.data)
-//    )
-// }
 export const getUser = async (userID) => {
    const response = await instance.get(`profile/${userID}`);
    return response.data;
@@ -82,4 +72,13 @@ export const unfollowUser = (UserID) => {
    return (
       instance.delete(`follow/${UserID}`).then(response => response.data)
    )
+}
+
+export const savePhoto = async (photo) => {
+   let formData = new FormData()
+   formData.append('image', photo)
+   const response = await instance.put(`profile/photo`, formData, {
+      headers : {'Content-Type': 'multipart/form-data'}
+   });
+   return response.data;
 }

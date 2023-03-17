@@ -21,6 +21,7 @@
 
  .info {
    display: flex;
+   margin: 0px 0px 40px 0px;
  }
  
  .info_img{
@@ -55,4 +56,10 @@
    visibility: none;
  }
 
- 
+.upload {
+  input {
+    border-radius: 5px;
+    font-size: 18px;
+    color: #555;
+   }
+}

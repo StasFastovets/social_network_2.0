@@ -19,3 +19,4 @@ export const getStatus = (state) => {
 export const getIsLoading = (state) => {
    return state.profile.isLoading
 }
+

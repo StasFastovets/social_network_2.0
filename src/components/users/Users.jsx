@@ -7,7 +7,7 @@ import User from './User';
 
 const Users = ({ users, ...props }) => {
    return (
-      <div className={s.body}>
+      <div className={s.body} key={props.currentPage}>
          <div className={s.container}>
             <div className={s.caption}>Users</div>
             <div className={s.loader}>{props.isFetching ? <Preloader /> : null}</div>

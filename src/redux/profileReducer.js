@@ -4,6 +4,7 @@ import { getStatusOfUser } from './../API/api';
 const SET_USER = 'profile/SET_USER'
 const SET_STATUS = 'profile/SET_STATUS'
 const IS_LOADING = 'profile/IS_LOADING'
+const SET_PHOTOS = 'profile/SET_PHOTOS'
 
 let initialState = {
    profile: {
@@ -32,6 +33,11 @@ const profileReducer = (state = initialState, action) => {
             ...state,
             isLoading: action.isLoading
          }
+      case SET_PHOTOS:
+         return {
+            ...state,
+            profile: { ...state.profile, photos: action.photos }
+         }
       default:
          return state
    }
@@ -41,6 +47,7 @@ const profileReducer = (state = initialState, action) => {
 export const setUserProfileAC = (profile) => ({ type: SET_USER, profile })
 export const setStatusOfUserAC = (status) => ({ type: SET_STATUS, status })
 export const setIsLoadingAC = (isLoading) => ({ type: IS_LOADING, isLoading })
+export const setProfilePhotosAC = (photos) => ({ type: SET_PHOTOS, photos })
 
 export const getUserProfileTC = (userID) => {
    return (

@@ -1,13 +1,20 @@
 import s from './Profile.module.scss'
 import Preloader from './../other/preloader/preloader'
-// import ProfileStatusWithHooks from './ProfileStatusWithHooks';
 import ava from './../../img/ava.jpg'
 import ProfileStatus from './profileStatus/ProfileStatus'
 
-const Profile = ({ profile, ...props }) => {
-   if (profile == null || profile == undefined) {
+const Profile = ({ profile, authorizedUserID, userID, savePhotoTC, isLoading, ...props }) => {
+   debugger
+   if (profile == null || profile == undefined || isLoading) {
       return <Preloader />
    }
+
+   const onProfilePhotoSelected = (e) => {
+      if (e.target.files.length) {
+         savePhotoTC(e.target.files[0])
+      }
+   }
+
    return (
       <div className={s.content}>
          <div className={s.status}>
@@ -23,6 +30,9 @@ const Profile = ({ profile, ...props }) => {
                </div>
                <div className={s.info_jobDescription}>{profile.lookingForAJobDescription}</div>
             </div>
+         </div>
+         <div className={s.upload}>
+            {userID == authorizedUserID && <input type='file' onChange={onProfilePhotoSelected} />}
          </div>
       </div>
    )
